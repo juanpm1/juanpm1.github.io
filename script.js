@@ -28,51 +28,6 @@ const INFO_CONTAINER = document.querySelector(".aside-closed");
 const BOOK_COLOR = document.querySelector(".book-color");
 const DELETE_BOOK = document.querySelector(".delete-book");
 
-
-document.addEventListener("DOMContentLoaded",()=>{
-    if(bookshelves.length > 1){
-        saveToLocalStorage();
-        showBooks();
-    } 
-    if (STORED_BOOKSHELVES) {
-        bookshelves = JSON.parse(STORED_BOOKSHELVES);
-    }
-});
-
-const saveToLocalStorage = () => {
-    localStorage.setItem('bookshelves', JSON.stringify(bookshelves));
-};
-
-let infoClosed = true;
-const toggleInfo = () =>{
-    if(infoClosed){
-        INFO_BUTTON.style.transform = "rotate(180deg)";
-        INFO_CONTAINER.classList.replace("aside-closed", "aside");
-        infoClosed = false;
-    }
-    else{
-        INFO_BUTTON.style.transform = "rotate(0)";
-        INFO_CONTAINER.classList.replace("aside", "aside-closed");
-        infoClosed = true;
-    } 
-}
-
-INFO_BUTTON.addEventListener("click",toggleInfo);
-ADD_BOOK_BTN.addEventListener("click",()=>{
-    resetModal();
-    modal();
-})
-
-CONFIRM_MODAL.addEventListener("click", (e)=>{
-    e.preventDefault();
-    if(checkModal(BOOK_NAME, BOOK_DESCRIPTION)){
-        addBook();
-        CANCEL_MODAL.click();
-        showBooks();
-        updateInformation();
-    }      
-});
-
 const modal = () =>{
     MODAL_ELEMENT.style.display = "block";
     MAIN.classList.add("main-blur");
@@ -95,6 +50,24 @@ const modalSettings = () =>{
         MAIN.classList.remove("main-blur");
         ADD_BOOK_BTN.removeAttribute("disabled");
     });
+}
+
+const saveToLocalStorage = () => {
+    localStorage.setItem('bookshelves', JSON.stringify(bookshelves));
+};
+
+let infoClosed = true;
+const toggleInfo = () =>{
+    if(infoClosed){
+        INFO_BUTTON.style.transform = "rotate(180deg)";
+        INFO_CONTAINER.classList.replace("aside-closed", "aside");
+        infoClosed = false;
+    }
+    else{
+        INFO_BUTTON.style.transform = "rotate(0)";
+        INFO_CONTAINER.classList.replace("aside", "aside-closed");
+        infoClosed = true;
+    } 
 }
 
 const checkModal = (name, description) => {
@@ -227,3 +200,29 @@ const settings = (index) => {
     DELETE_BOOK.addEventListener("click", deleteBookHandler);
     CANCEL_MODAL_SETTINGS.addEventListener("click", closeModalHandler);
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (STORED_BOOKSHELVES) {
+        bookshelves = JSON.parse(STORED_BOOKSHELVES);
+    }
+
+    showBooks();
+    updateInformation();
+
+    INFO_BUTTON.addEventListener("click", toggleInfo);
+    ADD_BOOK_BTN.addEventListener("click", () => {
+        resetModal();
+        modal();
+    });
+
+    CONFIRM_MODAL.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (checkModal(BOOK_NAME, BOOK_DESCRIPTION)) {
+            addBook();
+            CANCEL_MODAL.click();
+            showBooks();
+            updateInformation();
+            saveToLocalStorage();
+        }
+    });
+});
