@@ -32,10 +32,10 @@ const DELETE_BOOK = document.querySelector(".delete-book");
 document.addEventListener("DOMContentLoaded",()=>{
     if(bookshelves.length > 1){
         saveToLocalStorage();
+        showBooks();
     } 
     if (STORED_BOOKSHELVES) {
         bookshelves = JSON.parse(STORED_BOOKSHELVES);
-        showBooks();
     }
 });
 
