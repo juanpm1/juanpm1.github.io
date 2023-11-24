@@ -1,5 +1,5 @@
 body{
-    background: rgb(223, 223, 223);
+    background: rgb(245, 245, 245);
     overflow-x: hidden;
 }
 
@@ -9,6 +9,10 @@ body{
     background: rgb(21, 21, 21);
     color: rgb(255, 255, 255);
     box-shadow: 1px 0 5px 1px rgb(72, 72, 72);
+}
+
+.main{
+    margin-bottom: 400px;
 }
 
 .main-blur{
@@ -189,6 +193,7 @@ body{
     margin-top: .35em;
     filter:grayscale(1);
     border: 2px solid rgb(181, 181, 181);
+    cursor: pointer;
 }
 
 .input-switch:active{
@@ -224,3 +229,20 @@ body{
     border: none;
 }
 
+.about-container{
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 10px 5px rgb(245, 245, 245) inset;
+}
+
+.about-description{
+    margin: 0 300px;
+}
+
+.footer{
+    position: fixed;
+    height: 35px;
+    bottom: 0;
+    background: rgb(21, 21, 21);
+    color: rgb(255, 255, 255);
+    box-shadow: 1px 0 5px 1px rgb(72, 72, 72);
+}
