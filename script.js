@@ -188,6 +188,7 @@ const settings = (index) => {
         bookshelves.splice(currentIndex, 1);
         showBooks();
         CANCEL_MODAL_SETTINGS.click();
+        updateInformation();
         saveToLocalStorage();
     };
 
